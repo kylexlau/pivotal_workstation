@@ -28,6 +28,7 @@ end
 execute "Copying homebrew's .git to /usr/local" do
   command "rsync -axSH #{Chef::Config[:file_cache_path]}/homebrew/ /usr/local/"
   user WS_USER
+  not_if "ls /usr/local/bin/brew"
 end
 
 ruby_block "Check that homebrew is running & working" do
